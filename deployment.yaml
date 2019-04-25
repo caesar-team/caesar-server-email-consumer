@@ -1,0 +1,28 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caesar-server-email-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caesar-server-email-consumer
+  template:
+    metadata:
+      labels:
+        app: caesar-server-email-consumer
+        CICD_GIT_COMMIT: ${CICD_GIT_COMMIT}
+    spec:
+      containers:
+        - name: caesar-server-email-consumer
+          image: "caesarteam/caesar-server-email-consumer:${CICD_GIT_BRANCH}"
+          envFrom:
+            - configMapRef:
+                name: caesarapp-config
+            - secretRef:
+                name: mailer-secret    
+            - secretRef:
+                name: rabbitmq-secret
+            imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
