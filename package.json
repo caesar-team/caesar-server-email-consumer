@@ -1,0 +1,27 @@
+{
+  "name": "caesar-server-email-consumer",
+  "version": "0.0.1",
+  "description": "Email consumer for the caesar server application",
+  "main": "app.js",
+  "repository": "git@github.com:caesar-team/caesar-server-email-consumer.git",
+  "author": "Aleksander Beshkenadze <ab@caesar.team>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "babel-node src/consumer.js",
+    "build": "babel src --out-dir dist",
+    "consumer": "node dist/consumer.js"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.3",
+    "dotenv": "^7.0.0",
+    "eslint": "^5.16.0",
+    "nodemailer": "^6.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3"
+  }
+}
