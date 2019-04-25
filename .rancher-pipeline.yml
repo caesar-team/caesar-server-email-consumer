@@ -1,0 +1,20 @@
+stages:
+- name: Publish image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: caesarteam/caesar-server-email-consumer:${CICD_GIT_BRANCH}
+      pushRemote: true
+      registry: index.docker.io
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+branch:
+  include: [ master ]
+notification:
+  recipients:
+  - recipient: "#caesarapp-notify"
+    notifier: "slack"
+  condition: [ Success, Changed, Failed ]
