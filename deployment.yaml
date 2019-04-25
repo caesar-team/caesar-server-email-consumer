@@ -23,6 +23,6 @@ spec:
                 name: mailer-secret    
             - secretRef:
                 name: rabbitmq-secret
-            imagePullSecrets:
+      imagePullSecrets:
       - name: dockerhub
       restartPolicy: Always
