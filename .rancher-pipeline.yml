@@ -12,7 +12,8 @@ stages:
   - applyYamlConfig:
       path: ./deployment.yaml
 branch:
-  include: [ master ]
+  include: [ master, develop ]
+  
 notification:
   recipients:
   - recipient: "#caesarapp-notify"

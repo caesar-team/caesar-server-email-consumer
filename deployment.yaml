@@ -18,11 +18,15 @@ spec:
           image: "caesarteam/caesar-server-email-consumer:${CICD_GIT_BRANCH}"
           envFrom:
             - configMapRef:
+                name: rabbitmq-config  
+            - configMapRef:
                 name: caesarapp-config
+            - configMapRef:
+                name: email-consumer-config    
             - secretRef:
-                name: mailer-secret    
+                name: email-consumer-secret    
             - secretRef:
-                name: rabbitmq-secret
-            imagePullSecrets:
+                name: rabbitmq-secret  
+      imagePullSecrets:
       - name: dockerhub
       restartPolicy: Always
